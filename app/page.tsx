@@ -32,6 +32,22 @@ import CustomDatePicker from '@/components/DatePicker';
 import { Genre } from '@prisma/client';
 import { useState } from 'react';
 
+/**
+ * This is the home page
+ * It renders the components to add a book, filter books, and display all books.
+ * The button to download all books as JSON or CSV should be visible TODO.
+ * 
+ * When a book is submitted successfully, the user should see green text in the form 
+ * telling them submit was successful. If this action fails, a popup alerts the user 
+ * this action failed.
+ *
+ * To submit the info for a book, the title is required to be <= 100 characters, the author <= 40 character
+ * the genre a valid genre, the date to be non-null, and a valid ISBN code.
+ * 
+ * To filer book, the user can select to filer by title, author, genre, or date.
+ * 
+ * @returns Home page component
+ */
 export default function Home() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,7 +77,6 @@ export default function Home() {
       setSubmitSuccess(false);
     }, 5000);
   };
-
   
   const genres = Object.values(Genre).filter(value => typeof value === 'string');
   
