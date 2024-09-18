@@ -24,13 +24,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { toast } from "sonner"
 
 
 import CustomDatePicker from '@/components/DatePicker';
 
 import { Genre } from '@prisma/client';
+import { useState } from 'react';
 
 export default function Home() {
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,10 +48,21 @@ export default function Home() {
     console.log('submitted: ', data);
     try {
       await axios.post('/api/books', data);
+      handleSubmitSuccess();
     } catch (error: unknown) {
       console.log('error from front end', error);
+      toast("An error occured");
     }
   }
+
+  const handleSubmitSuccess = () => {
+    setSubmitSuccess(true);
+    setTimeout(() => {
+      setSubmitSuccess(false);
+    }, 5000);
+  };
+
+  
   const genres = Object.values(Genre).filter(value => typeof value === 'string');
   
   return (
@@ -146,8 +160,11 @@ export default function Home() {
                       </FormItem>
                     )}
                   />
-                  <div className='pt-2'>
+                  <div className='pt-2 flex items-center gap-x-4'>
                     <Button type="submit">Create book</Button>
+                    <div className='text-green-500'>
+                      {submitSuccess && "Book has been added ✅"}
+                    </div>
                   </div>
                 </form>
               </Form>
