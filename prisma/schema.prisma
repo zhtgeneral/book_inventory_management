@@ -12,3 +12,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Book { 
+  id                Int       @id @default(autoincrement())
+  title             String    @db.VarChar(100)
+  author            String    @db.VarChar(40)
+  genre             Genre     
+  publication_date  DateTime
+  ISBN              String    @unique
+}
+
+enum Genre {
+  Romance
+  Mystery
+  Fantasy
+  SciFi
+  Thrillers
+  Horror
+  YoungAdult
+  Children
+  Religious
+  Inspirational
+  Memoir
+}
