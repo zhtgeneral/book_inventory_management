@@ -27,3 +27,13 @@ export async function POST(request: NextRequest) {
     return new NextResponse('Internal Error', { status: 500 });
   }
 }
+
+export async function GET() {
+  try {
+    const books: Book[] = await prisma.book.findMany({});
+    return NextResponse.json(books);
+  } catch (error: unknown) {
+    console.log(error);
+    return new NextResponse('Internal Error', { status: 500 });
+  }
+}
