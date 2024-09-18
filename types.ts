@@ -1,22 +1,10 @@
-export enum Genre {
-  Romance,
-  Mystery,
-  Fantasy,
-  SciFi,
-  Thrillers,
-  Horror,
-  YoungAdult,
-  Children,
-  Religious,
-  Inspirational,
-  Memoir
-}
+import { Genre } from '@prisma/client';
 
 export type Book = {
   id: number,
   title: string,
   author: string,
   genre: Genre,
-  publication_date: string,
-  isbn: string
+  publication_date: Date,
+  ISBN: string
 }
