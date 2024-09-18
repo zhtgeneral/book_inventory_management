@@ -1,6 +1,6 @@
 import { Genre } from '@prisma/client';
 
-export type Book = {
+export type Inventory = {
   id: number,
   title: string,
   author: string,

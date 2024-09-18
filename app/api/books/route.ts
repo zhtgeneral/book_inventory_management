@@ -22,7 +22,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     if (title.length > 100 || author.length > 40) {
       return new NextResponse('Invalid Data', { status: 400 })
     }
-    const book: Book = await prisma.book.create({
+    const book: Book = await prisma.inventory.create({
       data: {
         id: id,
         title: title,
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
  */
 export async function GET(): Promise<NextResponse> {
   try {
-    const books: Book[] = await prisma.book.findMany({});
+    const books: Book[] = await prisma.inventory.findMany({});
     return NextResponse.json(books);
   } catch (error: unknown) {
     console.log(error);
