@@ -1,5 +1,5 @@
 import prisma from "@/app/libs/prisma";
-import { Book } from "@/types";
+import { Inventory } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 import { Genre as PrismaGenre }  from '@prisma/client';
 
@@ -17,12 +17,12 @@ import { Genre as PrismaGenre }  from '@prisma/client';
  */
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
-    const body: Book = await request.json();
+    const body: Inventory = await request.json();
     const { id, title, author, genre, publication_date, ISBN } = body;
     if (title.length > 100 || author.length > 40) {
       return new NextResponse('Invalid Data', { status: 400 })
     }
-    const book: Book = await prisma.inventory.create({
+    const book: Inventory = await prisma.inventory.create({
       data: {
         id: id,
         title: title,
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
  */
 export async function GET(): Promise<NextResponse> {
   try {
-    const books: Book[] = await prisma.inventory.findMany({});
+    const books: Inventory[] = await prisma.inventory.findMany({});
     return NextResponse.json(books);
   } catch (error: unknown) {
     console.log(error);
