@@ -86,6 +86,8 @@ export default function Home() {
     } catch (error: unknown) {
       console.log('error from front end', error);
       toast("An error occured");
+    } finally {
+      fetchBooks();
     }
   }
   const handleSubmitSuccess = () => {
