@@ -37,6 +37,7 @@ import { CgExport } from "react-icons/cg";
 import Hoverable from '@/components/Hoverable';
 import Nav from '@/components/Nav';
 import getBooks from '@/app/utils/getBooks';
+import downloadBooks from '@/app/utils/downloadBooks'
 
 /**
  * This is the home page
@@ -56,17 +57,10 @@ import getBooks from '@/app/utils/getBooks';
  */
 export default function Home() {
   const [books, setBooks] = useState<Inventory[]>([]);
-
-  try {
-    getBooks(setBooks);
-  } catch (error: unknown) {
-    console.log(error);
-  }
-
-  useEffect(() => {
-    getBooks();
-  }, []);
   
+  useEffect(() => {
+    getBooks(setBooks);
+  }, []);
 
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -88,7 +82,7 @@ export default function Home() {
       console.log('error from front end', error);
       toast("An error occured");
     } finally {
-      getBooks();
+      getBooks(setBooks);
     }
   }
   const handleSubmitSuccess = () => {
@@ -97,25 +91,6 @@ export default function Home() {
     setTimeout(() => {
       setSubmitSuccess(false);
     }, 5000);
-  };
-
-  const downloadBooks = () => {
-    const jsonString = JSON.stringify(books, null, 2);
-  
-    const blob = new Blob([jsonString], { type: 'application/json' });
-  
-    const url = URL.createObjectURL(blob);
-  
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'books_inventory.json';
-  
-    document.body.appendChild(link);
-  
-    link.click();
-  
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
   };
   
   const genres = Object.values(Genre).filter(value => typeof value === 'string');
@@ -237,7 +212,7 @@ export default function Home() {
             <div className='flex justify-between items-center p-4'>
               <h2 className="text-lg font-bold outline-2 outline-neutral-500">Results</h2>
               <Hoverable message="Export all data as JSON">
-                <Button onClick={downloadBooks}>
+                <Button onClick={() => downloadBooks(books)}>
                   <div className='pr-2'>
                     Export
                   </div>
