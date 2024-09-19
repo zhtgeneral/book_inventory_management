@@ -100,13 +100,13 @@ export default function Home() {
 
   return (
     <div className='h-screen flex-col bg-neutral-100'>
-      <div className='flex font-bold text-lg justify-center items-center text-center h-[60px] border-neutral-200 border-b'>
+      <div className='flex font-bold text-lg justify-center items-center text-center h-[60px] border-neutral-200 border-b bg-white shadow-sm shadow-neutral-200'>
           Book Inventory Management App
       </div>
       <div className='flex items-center justify-center p-4 md:px-10'>
         <div className='flex h-full gap-x-4 w-full lg:w-[80%]'>
           <div className="w-2/5 h-full space-y-4">
-            <div className='bg-white p-6 rounded-xl'>
+            <div className='bg-white p-6 rounded-lg border border-neutral-300 shadow-md shadow-neutral-200'>
               <div className='text-lg font-bold'>
                 Add book to inventory
               </div>
@@ -203,13 +203,13 @@ export default function Home() {
               </Form>
             </div>
 
-            <div className='bg-white p-4 rounded-l'>
+            <div className='bg-white p-4 rounded-lg border border-neutral-300 shadow-md shadow-neutral-200'>
               <h2 className="text-lg font-bold mb-2">Filter</h2>
               Filter
             </div>
 
           </div>
-          <div className="w-3/5 bg-white h-full rounded-xl outline outline-1 outline-gray-300">
+          <div className="w-3/5 bg-white h-full rounded-lg outline outline-1 outline-gray-300 shadow-md shadow-neutral-200">
             <h2 className="text-lg font-bold outline-2 outline-neutral-500 p-4 ">Results</h2>
             <div className="w-full border-b border-gray-300" />
             <div>
