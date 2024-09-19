@@ -40,6 +40,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import Hoverable from '@/components/Hoverable';
 
 /**
  * This is the home page
@@ -222,16 +223,11 @@ export default function Home() {
                     )}
                   />
                   <div className='pt-2 flex items-center gap-x-4'>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Button type="submit">Create book</Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Add a book to the database</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <Hoverable message="Add a book to the database">
+                      <Button type="submit">
+                        Create book
+                      </Button>
+                    </Hoverable>
                     <div className='text-green-500'>
                       {submitSuccess && "Book has been added ✅"}
                     </div>
@@ -249,21 +245,14 @@ export default function Home() {
           <div className="w-3/5 bg-white h-full rounded-lg outline outline-1 outline-gray-300 shadow-md shadow-neutral-200">
             <div className='flex justify-between items-center p-4'>
               <h2 className="text-lg font-bold outline-2 outline-neutral-500">Results</h2>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Button onClick={downloadBooks}>
-                      <div className='pr-2'>
-                        Export
-                      </div>
-                      <CgExport size={18}/>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Export all data as JSON</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <Hoverable message="Export all data as JSON">
+                <Button onClick={downloadBooks}>
+                  <div className='pr-2'>
+                    Export
+                  </div>
+                  <CgExport size={18}/>
+                </Button>
+              </Hoverable>
             </div>
             
             <div className="w-full border-b border-gray-300" />
