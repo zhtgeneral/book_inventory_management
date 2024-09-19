@@ -35,6 +35,8 @@ import { Inventory } from '@/types';
 import BooksDisplay from '@/components/BooksDisplay';
 import { CgExport } from "react-icons/cg";
 import Hoverable from '@/components/Hoverable';
+import Nav from '@/components/Nav';
+import getBooks from '@/app/utils/getBooks';
 
 /**
  * This is the home page
@@ -55,17 +57,14 @@ import Hoverable from '@/components/Hoverable';
 export default function Home() {
   const [books, setBooks] = useState<Inventory[]>([]);
 
-  const fetchBooks = async () => {
-    try {
-      const response = await axios.get<Inventory[]>('/api/books');
-      setBooks(response.data);
-    } catch (err) {
-      console.error('Error fetching books:', err);
-    }
-  };
+  try {
+    getBooks(setBooks);
+  } catch (error: unknown) {
+    console.log(error);
+  }
 
   useEffect(() => {
-    fetchBooks();
+    getBooks();
   }, []);
   
 
@@ -89,7 +88,7 @@ export default function Home() {
       console.log('error from front end', error);
       toast("An error occured");
     } finally {
-      fetchBooks();
+      getBooks();
     }
   }
   const handleSubmitSuccess = () => {
@@ -123,9 +122,7 @@ export default function Home() {
 
   return (
     <div className='h-screen flex-col bg-neutral-100'>
-      <div className='flex font-bold text-lg justify-center items-center text-center h-[60px] border-neutral-200 border-b bg-white shadow-sm shadow-neutral-200'>
-          Book Inventory Management App
-      </div>
+      <Nav />
       <div className='flex items-center justify-center p-4 md:px-10'>
         <div className='flex h-full gap-x-4 w-full lg:w-[80%]'>
           <div className="w-2/5 h-full space-y-4">
@@ -250,9 +247,7 @@ export default function Home() {
             </div>
             
             <div className="w-full border-b border-gray-300" />
-            <div>
-              <BooksDisplay books={books}/>
-            </div>
+            <BooksDisplay books={books}/>
           </div>
         </div>
       </div>
