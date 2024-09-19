@@ -30,7 +30,13 @@ const BooksDisplay: React.FC<BooksDisplayProps> = ({
   const handleRowClick = (bookId: number) => {
     setSelectedBookId(bookId === selectedBookId ? null : bookId);
   };
-
+  if (books.length === 0) {
+    return (
+      <div className='p-4 text-center'>
+        No results found.
+      </div>
+    )
+  }
   return (
     <div className="overflow-x-auto">
       <div className="min-w-[800px]">        
