@@ -8,3 +8,12 @@ export type Inventory = {
   publication_date: Date,
   ISBN: string
 }
+
+export type DisplayInventory = {
+  id: number,
+  title: string,
+  author: string,
+  genre: Genre,
+  publication_date: string,
+  ISBN: string
+}

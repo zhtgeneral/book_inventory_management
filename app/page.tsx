@@ -30,7 +30,9 @@ import { toast } from "sonner"
 import CustomDatePicker from '@/components/DatePicker';
 
 import { Genre } from '@prisma/client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Inventory } from '@/types';
+import BooksDisplay from '@/components/BooksDisplay';
 
 /**
  * This is the home page
@@ -49,6 +51,22 @@ import { useState } from 'react';
  * @returns Home page component
  */
 export default function Home() {
+  const [books, setBooks] = useState<Inventory[]>([]);
+
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get<Inventory[]>('/api/books');
+      setBooks(response.data);
+    } catch (err) {
+      console.error('Error fetching books:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+  
+
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -70,7 +88,6 @@ export default function Home() {
       toast("An error occured");
     }
   }
-
   const handleSubmitSuccess = () => {
     setSubmitSuccess(true);
     form.reset();
@@ -80,14 +97,14 @@ export default function Home() {
   };
   
   const genres = Object.values(Genre).filter(value => typeof value === 'string');
-  
+
   return (
     <div className='h-screen flex-col bg-neutral-100'>
-      <div className='flex font-bold text-lg justify-center items-center text-center h-[60px] border-neutral-200 border-b-2'>
+      <div className='flex font-bold text-lg justify-center items-center text-center h-[60px] border-neutral-200 border-b'>
           Book Inventory Management App
       </div>
       <div className='flex items-center justify-center p-4 md:px-10'>
-        <div className='flex h-full gap-x-4 w-full lg:w-[70%]'>
+        <div className='flex h-full gap-x-4 w-full lg:w-[80%]'>
           <div className="w-2/5 h-full space-y-4">
             <div className='bg-white p-6 rounded-xl'>
               <div className='text-lg font-bold'>
@@ -186,20 +203,21 @@ export default function Home() {
               </Form>
             </div>
 
-            <div className='bg-white p-4 rounded-xl'>
+            <div className='bg-white p-4 rounded-l'>
               <h2 className="text-lg font-bold mb-2">Filter</h2>
               Filter
             </div>
 
           </div>
-          <div className="w-3/5 p-4 bg-white h-full rounded-xl">
-            <h2 className="text-lg font-bold mb-2">Results</h2>
+          <div className="w-3/5 bg-white h-full rounded-xl outline outline-1 outline-gray-300">
+            <h2 className="text-lg font-bold outline-2 outline-neutral-500 p-4 ">Results</h2>
+            <div className="w-full border-b border-gray-300" />
             <div>
-              results
+              <BooksDisplay books={books}/>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
