@@ -95,6 +95,25 @@ export default function Home() {
       setSubmitSuccess(false);
     }, 5000);
   };
+
+  const downloadBooks = () => {
+    const jsonString = JSON.stringify(books, null, 2);
+  
+    const blob = new Blob([jsonString], { type: 'application/json' });
+  
+    const url = URL.createObjectURL(blob);
+  
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'books_inventory.json';
+  
+    document.body.appendChild(link);
+  
+    link.click();
+  
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
   
   const genres = Object.values(Genre).filter(value => typeof value === 'string');
 
@@ -210,7 +229,13 @@ export default function Home() {
 
           </div>
           <div className="w-3/5 bg-white h-full rounded-lg outline outline-1 outline-gray-300 shadow-md shadow-neutral-200">
-            <h2 className="text-lg font-bold outline-2 outline-neutral-500 p-4 ">Results</h2>
+            <div className='flex justify-between items-center p-4'>
+              <h2 className="text-lg font-bold outline-2 outline-neutral-500">Results</h2>
+              <Button onClick={downloadBooks}>
+                Export
+              </Button>
+            </div>
+            
             <div className="w-full border-b border-gray-300" />
             <div>
               <BooksDisplay books={books}/>
