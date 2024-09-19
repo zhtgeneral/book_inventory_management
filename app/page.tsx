@@ -222,7 +222,16 @@ export default function Home() {
                     )}
                   />
                   <div className='pt-2 flex items-center gap-x-4'>
-                    <Button type="submit">Create book</Button>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <Button type="submit">Create book</Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Add a book to the database</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                     <div className='text-green-500'>
                       {submitSuccess && "Book has been added ✅"}
                     </div>
