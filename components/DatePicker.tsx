@@ -75,7 +75,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ onChange, value }) 
   };
 
   return (
-    <div className="flex space-x-2">
+    <div className="lg:space-x-2 justify-start">
       <select
         name="day"
         value={date.getDate()}

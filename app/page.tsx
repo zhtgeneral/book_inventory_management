@@ -166,7 +166,7 @@ export default function Home() {
                         <FormLabel>Genre</FormLabel>
                         <FormControl>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className="w-[140px] md:w-[180px]">
                               <SelectValue placeholder="Select a genre" />
                             </SelectTrigger>
                             <SelectContent>
