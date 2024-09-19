@@ -6,6 +6,22 @@ interface BooksDisplayProps {
   books: Inventory[]
 }
 
+/**
+ * This is the component that renders all the books. 
+ * 
+ * The table has 5 columns: Title, Author, Genre, Publication Date, ISBN.
+ * Each columns displays the correct info about the book formatted correctly.
+ * If the entry name is too long, it gets cut off with 3 dots.
+ * 
+ * When the display becomes narrow, the table shows a horizontal scroll bar so the user
+ * can see all the entries.
+ * 
+ * When the number of books exceeds the height of the screen, the table should continue to 
+ * display the rows without a vertical scroll bar.
+ * 
+ * @param books All the books from the database
+ * @returns A component that renders all the books.
+ */
 const BooksDisplay: React.FC<BooksDisplayProps> = ({
   books
 }) => {

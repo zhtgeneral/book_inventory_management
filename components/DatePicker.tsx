@@ -5,6 +5,20 @@ interface CustomDatePickerProps {
   value: Date;
 }
 
+/**
+ * This is the component that lets the user select Day, month and year.
+ * 
+ * When day is selected, the user can choose from 30 or 31 days which appears as a dropdown.
+ * When month is selected, the user can choose one of the months which appears as a dropdown.
+ * When year is selected, it can be incremented by 1 or be entered manually.
+ * 
+ * By default, the component shows the current date.
+ * 
+ * The currently selected date is detected by onChange and can update forms.
+ * 
+ * @param Object contains `onChange` and `value`
+ * @returns Date Picker component
+ */
 const CustomDatePicker: React.FC<CustomDatePickerProps> = ({ onChange, value }) => {
   const [date, setDate] = useState<Date>(value || new Date());
   const [daysInMonth, setDaysInMonth] = useState<number[]>([]);
