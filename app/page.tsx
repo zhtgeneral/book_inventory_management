@@ -33,6 +33,13 @@ import { Genre } from '@prisma/client';
 import { useEffect, useState } from 'react';
 import { Inventory } from '@/types';
 import BooksDisplay from '@/components/BooksDisplay';
+import { CgExport } from "react-icons/cg";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 /**
  * This is the home page
@@ -233,9 +240,21 @@ export default function Home() {
           <div className="w-3/5 bg-white h-full rounded-lg outline outline-1 outline-gray-300 shadow-md shadow-neutral-200">
             <div className='flex justify-between items-center p-4'>
               <h2 className="text-lg font-bold outline-2 outline-neutral-500">Results</h2>
-              <Button onClick={downloadBooks}>
-                Export
-              </Button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button onClick={downloadBooks}>
+                      <div className='pr-2'>
+                        Export
+                      </div>
+                      <CgExport size={18}/>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Export all data as JSON</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             
             <div className="w-full border-b border-gray-300" />
