@@ -34,25 +34,25 @@ const BooksDisplay: React.FC<BooksDisplayProps> = ({
   return (
     <div className="overflow-x-auto">
       <div className="min-w-[800px]">        
-        <div className="flex gap-2 font-bold  p-2">
-          <div className="w-[25%]">Title</div>
-          <div className="w-[20%]">Author</div>
-          <div className="w-[15%]">Genre</div>
-          <div className="w-[20%]">Publication Date</div>
-          <div className="w-[10%]">ISBN</div>
+        <div className="flex gap-2 font-bold border-b border-neutral-300">
+          <div className="w-[25%] border-r border-neutral-300 px-4 py-2">Title</div>
+          <div className="w-[20%] border-r border-neutral-300 px-4 py-2">Author</div>
+          <div className="w-[15%] border-r border-neutral-300 px-4 py-2">Genre</div>
+          <div className="w-[20%] border-r border-neutral-300 px-4 py-2">Publication Date</div>
+          <div className="w-[10%] px-4 py-2">ISBN</div>
         </div>
         <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
           {books.map((book) => (
             <div
               key={book.id}
-              className={`flex gap-2 p-2 hover:bg-neutral-50 transition`}
+              className={`flex gap-2 hover:bg-neutral-50 transition`}
               onClick={() => handleRowClick(book.id)}
             >
-              <div className="truncate w-[25%]">{book.title}</div>
-              <div className="truncate w-[20%]">{book.author}</div>
-              <div className="w-[15%]" >{book.genre}</div>
-              <div className="w-[20%]">{format(new Date(book.publication_date), 'yyyy-MM-dd')}</div>
-              <div className="w-[15%]">{book.ISBN}</div>
+              <div className="truncate w-[25%] px-4 py-2 border-r border-neutral-300">{book.title}</div>
+              <div className="truncate w-[20%] px-4 py-2 border-r border-neutral-300">{book.author}</div>
+              <div className="w-[15%] px-4 py-2 border-r border-neutral-300" >{book.genre}</div>
+              <div className="w-[20%] px-4 py-2 border-r border-neutral-300">{format(new Date(book.publication_date), 'yyyy-MM-dd')}</div>
+              <div className="w-[15%] px-4 py-2">{book.ISBN}</div>
             </div>
           ))}
         </div>
