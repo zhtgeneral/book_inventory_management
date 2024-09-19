@@ -34,12 +34,6 @@ import { useEffect, useState } from 'react';
 import { Inventory } from '@/types';
 import BooksDisplay from '@/components/BooksDisplay';
 import { CgExport } from "react-icons/cg";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import Hoverable from '@/components/Hoverable';
 
 /**

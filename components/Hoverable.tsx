@@ -11,6 +11,14 @@ interface HoverableProps {
   message?: string
 }
 
+/**
+ * This is from ShadCN UI.
+ * 
+ * This component allows other components to display a message when hovered.
+ * 
+ * @param message the message that appears when component is hovered over
+ * @returns Hoverable component
+ */
 const Hoverable: React.FC<HoverableProps> = ({
   children,
   message

@@ -16,6 +16,9 @@ interface CustomDatePickerProps {
  * 
  * The currently selected date is detected by onChange and can update forms.
  * 
+ * When screen with is narrow, render the select elements stacked vertically. 
+ * Otherwise render the select slements horizontally.
+ * 
  * @param Object contains `onChange` and `value`
  * @returns Date Picker component
  */
