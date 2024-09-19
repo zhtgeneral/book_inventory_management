@@ -73,6 +73,7 @@ export default function Home() {
 
   const handleSubmitSuccess = () => {
     setSubmitSuccess(true);
+    form.reset();
     setTimeout(() => {
       setSubmitSuccess(false);
     }, 5000);
