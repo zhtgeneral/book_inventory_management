@@ -30,9 +30,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 There is 1 main page for the entire app. On this page there are 3 panels. The upper left panel lets you add books. The lower left panel lets you filter the books. The right panel lets you see all the books added in the database.
 
 Desktop mode:
+
 ![Image of desktop demo](/demo_desktop.png)
 
 Mobile mode:
+
 ![Image of mobile demo](/demo_mobile.png)
 
 ### Adding book
