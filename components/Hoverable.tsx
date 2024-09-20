@@ -4,7 +4,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import React, { ReactNode } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 
 interface HoverableProps {
   children?: ReactNode,
@@ -23,7 +23,14 @@ const Hoverable: React.FC<HoverableProps> = ({
   children,
   message
 }) => {
-  return (
+  const isServer = typeof window === 'undefined';
+  const [isHydrated, setIsHydrated] = useState(false);
+  useEffect(() => {
+    if (!isServer) {
+      setIsHydrated(true);
+    }
+  }, []);
+  return isHydrated? (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>
@@ -34,7 +41,7 @@ const Hoverable: React.FC<HoverableProps> = ({
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  ): null
 }
 export default Hoverable
 
