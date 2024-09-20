@@ -28,3 +28,10 @@ export const formSchema: ZodObject<{
     message: "ISBN must be 10 or 13 characters"
   })
 })
+
+export const searchSchema = z.object({
+  title: z.string().optional(),
+  author: z.string().optional(),
+  genre: z.nativeEnum(Genre).optional(),
+  year: z.number().min(1000).max(9999).optional(),
+});

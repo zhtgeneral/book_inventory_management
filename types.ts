@@ -17,3 +17,10 @@ export type DisplayInventory = {
   publication_date: string,
   ISBN: string
 }
+
+export type SearchParams = {
+  title?: string,
+  author?: string,
+  genre?: Genre,
+  year?: number,
+}

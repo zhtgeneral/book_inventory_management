@@ -30,14 +30,16 @@ import { toast } from "sonner"
 import CustomDatePicker from '@/components/DatePicker';
 
 import { Genre } from '@prisma/client';
-import { useEffect, useState } from 'react';
-import { Inventory } from '@/types';
+import { SetStateAction, useEffect, useState } from 'react';
+import { Inventory, SearchParams } from '@/types';
 import BooksDisplay from '@/components/BooksDisplay';
 import { CgExport } from "react-icons/cg";
 import Hoverable from '@/components/Hoverable';
 import Nav from '@/components/Nav';
 import getBooks from '@/app/utils/getBooks';
 import downloadBooks from '@/app/utils/downloadBooks'
+import SearchForm from '@/components/SearchForm';
+import filterBooks from '@/app/utils/filterBooks';
 
 /**
  * This is the home page
@@ -57,6 +59,7 @@ import downloadBooks from '@/app/utils/downloadBooks'
  */
 export default function Home() {
   const [books, setBooks] = useState<Inventory[]>([]);
+  const [searchParams, setSearchParams] = useState<SearchParams>({});
   
   useEffect(() => {
     getBooks(setBooks);
@@ -91,6 +94,11 @@ export default function Home() {
     setTimeout(() => {
       setSubmitSuccess(false);
     }, 5000);
+  };
+
+  const filteredBooks = filterBooks(books, searchParams);
+  const handleSearch = (data: SetStateAction<SearchParams>) => {
+    setSearchParams(data);
   };
   
   const genres = Object.values(Genre).filter(value => typeof value === 'string');
@@ -204,7 +212,7 @@ export default function Home() {
 
             <div className='bg-white p-4 rounded-lg border border-neutral-300 shadow-md shadow-neutral-200'>
               <h2 className="text-lg font-bold mb-2">Filter</h2>
-              Filter
+              <SearchForm onSearch={handleSearch}/>
             </div>
 
           </div>
@@ -222,7 +230,7 @@ export default function Home() {
             </div>
             
             <div className="w-full border-b border-gray-300" />
-            <BooksDisplay books={books}/>
+            <BooksDisplay books={filteredBooks}/>
           </div>
         </div>
       </div>
