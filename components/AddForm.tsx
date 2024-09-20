@@ -31,6 +31,7 @@ import axios from "axios"
 import { toast } from "sonner"
 import getBooks from "@/app/utils/getBooks"
 import { Genre } from "@prisma/client"
+import { FaPlus } from "react-icons/fa";
 import { Inventory } from "@/types"
 
 interface AddFormProps {
@@ -177,8 +178,11 @@ const AddForm: React.FC<AddFormProps> = ({
         />
         <div className='pt-2 flex items-center gap-x-4'>
           <Hoverable message="Add a book to the database">
-            <Button type="submit">
-              Create book
+            <Button type="submit" className='flex'>
+              <div className='pr-2'>
+                Create book
+              </div>
+              <FaPlus />
             </Button>
           </Hoverable>
           <div className='text-green-500'>

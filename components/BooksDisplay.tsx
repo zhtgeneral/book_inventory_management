@@ -51,7 +51,7 @@ const BooksDisplay: React.FC<BooksDisplayProps> = ({
           {books.map((book) => (
             <div
               key={book.id}
-              className={`flex gap-2 hover:bg-neutral-50 transition`}
+              className={`flex gap-2 hover:bg-neutral-50 transition cursor-text`}
               onClick={() => handleRowClick(book.id)}
             >
               <div className="truncate w-[25%] px-4 py-2 border-r border-neutral-300">{book.title}</div>

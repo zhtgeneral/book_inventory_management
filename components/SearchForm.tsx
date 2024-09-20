@@ -13,6 +13,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { searchSchema } from '@/app/utils/zod';
+import { FaFilter } from "react-icons/fa6";
+import Hoverable from '@/components/Hoverable';
 
 export type SearchParams = z.infer<typeof searchSchema>;
 
@@ -83,7 +85,14 @@ const SearchForm: React.FC<SearchFormProps> = ({
           />
         )}
       />
-      <Button type="submit">Search</Button>
+      <Hoverable message="Filter for books">
+        <Button type="submit">
+          <div className='pr-2'>
+            Filter
+          </div>
+          <FaFilter />
+        </Button>
+      </Hoverable>
     </form>
   );
 }
