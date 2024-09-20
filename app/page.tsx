@@ -1,45 +1,19 @@
 'use client'
 
-import { formSchema } from '@/app/utils/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from 'axios';
-
-import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { toast } from "sonner"
-
-
-import CustomDatePicker from '@/components/DatePicker';
-
-import { Genre } from '@prisma/client';
 import { SetStateAction, useEffect, useState } from 'react';
-import { Inventory, SearchParams } from '@/types';
-import BooksDisplay from '@/components/BooksDisplay';
 import { CgExport } from "react-icons/cg";
-import Hoverable from '@/components/Hoverable';
-import Nav from '@/components/Nav';
+
+import { Inventory, SearchParams } from '@/types';
 import getBooks from '@/app/utils/getBooks';
 import downloadBooks from '@/app/utils/downloadBooks'
-import SearchForm from '@/components/SearchForm';
 import filterBooks from '@/app/utils/filterBooks';
+
+import { Button } from "@/components/ui/button"
+import BooksDisplay from '@/components/BooksDisplay';
+import Hoverable from '@/components/Hoverable';
+import Nav from '@/components/Nav';
+import SearchForm from '@/components/SearchForm';
+import AddForm from '@/components/AddForm';
 
 /**
  * This is the home page
@@ -65,44 +39,11 @@ export default function Home() {
     getBooks(setBooks);
   }, []);
 
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      author: "",
-      genre: "",
-      publication_date: new Date(),
-      ISBN: ""
-    },
-  })
-  async function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log('submitted: ', data);
-    try {
-      await axios.post('/api/books', data);
-      handleSubmitSuccess();
-    } catch (error: unknown) {
-      console.log('error from front end', error);
-      toast("An error occured");
-    } finally {
-      getBooks(setBooks);
-    }
-  }
-  const handleSubmitSuccess = () => {
-    setSubmitSuccess(true);
-    form.reset();
-    setTimeout(() => {
-      setSubmitSuccess(false);
-    }, 5000);
-  };
-
   const filteredBooks = filterBooks(books, searchParams);
   const handleSearch = (data: SetStateAction<SearchParams>) => {
     setSearchParams(data);
   };
   
-  const genres = Object.values(Genre).filter(value => typeof value === 'string');
-
   return (
     <div className='h-screen flex-col bg-neutral-100'>
       <Nav />
@@ -110,104 +51,8 @@ export default function Home() {
         <div className='flex h-full gap-x-4 w-full lg:w-[80%]'>
           <div className="w-2/5 h-full space-y-4">
             <div className='bg-white p-6 rounded-lg border border-neutral-300 shadow-md shadow-neutral-200'>
-              <div className='text-lg font-bold'>
-                Add book to inventory
-              </div>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-                  <FormField
-                    control={form.control}
-                    name="title"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Title</FormLabel>
-                        <FormControl>
-                          <Input placeholder='enter title' {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="author"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Author</FormLabel>
-                        <FormControl>
-                          <Input placeholder='enter author name' {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="genre"
-                    render={({ field }) => (
-                    <FormItem>
-                      <div className='flex flex-col items-start space-y-2'>
-                        <FormLabel>Genre</FormLabel>
-                        <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger className="w-[140px] md:w-[180px]">
-                              <SelectValue placeholder="Select a genre" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {genres.map((genre) => (
-                                <SelectItem key={genre} value={genre}>
-                                  {genre}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="publication_date"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Publication Date</FormLabel>
-                        <FormControl>
-                          <CustomDatePicker
-                            onChange={field.onChange}
-                            value={field.value}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="ISBN"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>ISBN</FormLabel>
-                        <FormControl>
-                          <Input placeholder='enter ISBN' {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className='pt-2 flex items-center gap-x-4'>
-                    <Hoverable message="Add a book to the database">
-                      <Button type="submit">
-                        Create book
-                      </Button>
-                    </Hoverable>
-                    <div className='text-green-500'>
-                      {submitSuccess && "Book has been added ✅"}
-                    </div>
-                  </div>
-                </form>
-              </Form>
+              <h2 className='text-lg font-bold'>Add book to inventory</h2>
+              <AddForm onSuccess={setBooks}/>
             </div>
 
             <div className='bg-white p-4 rounded-lg border border-neutral-300 shadow-md shadow-neutral-200'>
