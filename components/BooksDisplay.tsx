@@ -32,7 +32,7 @@ const BooksDisplay: React.FC<BooksDisplayProps> = ({
   };
   if (books.length === 0) {
     return (
-      <div className='p-4 text-center'>
+      <div className='p-4 text-center border border-t border-neutral-300'>
         No results found.
       </div>
     )
