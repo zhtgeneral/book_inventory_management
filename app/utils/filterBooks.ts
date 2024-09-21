@@ -4,6 +4,8 @@ import { useMemo } from "react";
 /**
  * Function that returns the book after a search.
  * 
+ * Whenever `books` of `searchParams` gets changed, this will trigger the books to be filtered again.
+ * 
  * @param books the books to search from
  * @param searchParams the parameters used to search
  * @returns the books that meet the search criteria

@@ -4,6 +4,20 @@ import { Dispatch, SetStateAction } from "react";
 import { z } from "zod";
 import { formSchema } from "@/app/utils/zod";
 
+/**
+ * This is the interface from which the client interacts with the book inventory.
+ * As such, the client does not know the implementation for any of these methods.
+ * 
+ * This class has 4 public methods:
+ * 
+ * `createBook` creates a book in the database.
+ * 
+ * `readBooks` reads all the books from the database.
+ * 
+ * `updateBook` updates a book from the database. TODO
+ * 
+ * `deleteBook` deletes a the books from the database. TODO
+ */
 export class Inventory {
 
   /**
@@ -30,7 +44,7 @@ export class Inventory {
   }
 
 /**
- * Updates a in the database. This function is not needed for this app yet TODO.
+ * Updates a book in the database.
  * 
  * If error occurs, it propogates and needs to be handled in the client.
  * 
@@ -41,7 +55,7 @@ export class Inventory {
   }
 
 /**
- * Deletes a book in the database. This function is not needed for this app yet TODO.
+ * Deletes a book in the database.
  * 
  * If error occurs, it propogates and needs to be handled in the client.
  * 

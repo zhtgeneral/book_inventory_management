@@ -10,6 +10,11 @@ interface ResultsHeaderProps {
   books: Book[]
 }
 
+/**
+ * This component is a header than renders a title and displays a button to export book data.
+ * @param books the books to export 
+ * @returns Results Header Component
+ */
 const ResultsHeader: React.FC<ResultsHeaderProps> = ({
   books
 }) => {

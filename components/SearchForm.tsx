@@ -29,7 +29,7 @@ type SearchFormProps = {
  * The user can change the query from the front end.
  * When the search form is submitted, it passes the search query into `onSearch`.
  * 
- * @param onSearch a function that decides how to handle the query
+ * @param onSearch a function that sets the search params.
  * @returns Search Form Component
  */
 const SearchForm: React.FC<SearchFormProps> = ({ 

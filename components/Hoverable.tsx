@@ -12,7 +12,7 @@ interface HoverableProps {
 }
 
 /**
- * This is from ShadCN UI.
+ * This reuses ShadCN UI components.
  * 
  * This component allows other components to display a message when hovered.
  * 
