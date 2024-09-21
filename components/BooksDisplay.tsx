@@ -38,7 +38,7 @@ const BooksDisplay: React.FC<BooksDisplayProps> = ({
     )
   }
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto w-full border-t border-gray-300">
       <div className="min-w-[800px]">        
         <div className="flex gap-2 font-bold border-b border-neutral-300">
           <div className="w-[25%] border-r border-neutral-300 px-4 py-2">Title</div>

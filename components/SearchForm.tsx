@@ -40,7 +40,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSearch)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSearch)} className="space-y-4 pt-2">
       <Controller
         name="title"
         control={control}
