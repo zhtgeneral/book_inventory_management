@@ -1,4 +1,4 @@
-import { Book } from "@/types";
+import { Book } from "@prisma/client";
 
 /**
  * Downloads the books on the client so the user can access them.

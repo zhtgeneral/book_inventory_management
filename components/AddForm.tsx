@@ -28,9 +28,9 @@ import { Dispatch, SetStateAction, useState } from "react"
 import { formSchema } from "@/app/utils/zod"
 import { z } from "zod"
 import { toast } from "sonner"
-import { Genre } from "@prisma/client"
+import { Book, Genre } from "@prisma/client"
 import { FaPlus } from "react-icons/fa";
-import { Book } from "@/types"
+
 import { Inventory } from "@/app/utils/Inventory"
 
 interface AddFormProps {

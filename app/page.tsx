@@ -2,7 +2,7 @@
 
 import { SetStateAction, useEffect, useState } from 'react';
 
-import { Book, SearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import filterBooks from '@/app/utils/filterBooks';
 
 import BooksDisplay from '@/components/BooksDisplay';
@@ -12,6 +12,7 @@ import AddForm from '@/components/AddForm';
 import Panel from '@/components/Panel';
 import ResultsHeader from '@/components/ResultsHeader';
 import { Inventory } from '@/app/utils/Inventory';
+import { Book } from '@prisma/client';
 
 /**
  * This is the home page.

@@ -1,8 +1,8 @@
-import { Book } from "@/types";
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 import { z } from "zod";
 import { formSchema } from "@/app/utils/zod";
+import { Book } from "@prisma/client";
 
 /**
  * This is the interface from which the client interacts with the book inventory.

@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button"
 
 import downloadBooks from '@/app/utils/downloadBooks'
 import { CgExport } from "react-icons/cg"
-
-import { Book } from "@/types"
+import { Book } from "@prisma/client"
 
 interface ResultsHeaderProps {
   books: Book[]

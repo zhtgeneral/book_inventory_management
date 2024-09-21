@@ -1,4 +1,5 @@
-import { Book, SearchParams } from "@/types";
+import { SearchParams } from "@/types";
+import { Book } from "@prisma/client";
 import { useMemo } from "react";
 
 /**
