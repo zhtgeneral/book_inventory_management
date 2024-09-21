@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Genre } from '@prisma/client';
 import { Input } from "@/components/ui/input";
@@ -15,10 +14,9 @@ import {
 import { searchSchema } from '@/app/utils/zod';
 import { FaFilter } from "react-icons/fa6";
 import Hoverable from '@/components/Hoverable';
+import { SearchParams } from '@/types/searchParams';
 
-export type SearchParams = z.infer<typeof searchSchema>;
-
-type SearchFormProps = {
+interface SearchFormProps {
   onSearch: (data: SearchParams) => void;
 };
 

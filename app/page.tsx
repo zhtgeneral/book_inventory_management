@@ -2,7 +2,7 @@
 
 import { SetStateAction, useEffect, useState } from 'react';
 
-import { SearchParams } from '@/types';
+import { SearchParams } from '@/types/searchParams';
 import filterBooks from '@/app/utils/filterBooks';
 
 import BooksDisplay from '@/components/BooksDisplay';
