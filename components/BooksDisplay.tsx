@@ -1,9 +1,9 @@
-import { Inventory } from "@/types"
+import { Book } from "@/types"
 import { useState } from "react";
 import { format } from 'date-fns';
 
 interface BooksDisplayProps {
-  books: Inventory[]
+  books: Book[]
 }
 
 /**

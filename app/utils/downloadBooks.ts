@@ -1,11 +1,11 @@
-import { Inventory } from "@/types";
+import { Book } from "@/types";
 
 /**
  * Downloads the books on the client so the user can access them.
  * 
  * @param books the books to download
  */
-export default function downloadBooks(books: Inventory[])  {
+export default function downloadBooks(books: Book[])  {
   const jsonString = JSON.stringify(books, null, 2);
   const blob = new Blob([jsonString], { type: 'application/json' });
   const url = URL.createObjectURL(blob);

@@ -1,4 +1,4 @@
-import { Inventory, SearchParams } from "@/types";
+import { Book, SearchParams } from "@/types";
 import { useMemo } from "react";
 
 /**
@@ -8,9 +8,9 @@ import { useMemo } from "react";
  * @param searchParams the parameters used to search
  * @returns the books that meet the search criteria
  */
-export default function FilterBooks(books: Inventory[], searchParams: SearchParams) {
+export default function FilterBooks(books: Book[], searchParams: SearchParams) {
   return useMemo(() => {
-    return books.filter((book: Inventory) => {
+    return books.filter((book: Book) => {
       const matchesTitle = !searchParams.title || book.title.toLowerCase().includes(searchParams.title.toLowerCase());
       const matchesAuthor = !searchParams.author || book.author.toLowerCase().includes(searchParams.author.toLowerCase());
       const matchesGenre = !searchParams.genre || book.genre === searchParams.genre;

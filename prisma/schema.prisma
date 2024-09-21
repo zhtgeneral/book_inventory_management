@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Inventory { 
+model Book { 
   id                Int       @id @default(autoincrement())
   title             String    @db.VarChar(100)
   author            String    @db.VarChar(40)

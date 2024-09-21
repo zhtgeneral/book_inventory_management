@@ -2,8 +2,7 @@
 
 import { SetStateAction, useEffect, useState } from 'react';
 
-import { Inventory, SearchParams } from '@/types';
-import getBooks from '@/app/utils/getBooks';
+import { Book, SearchParams } from '@/types';
 import filterBooks from '@/app/utils/filterBooks';
 
 import BooksDisplay from '@/components/BooksDisplay';
@@ -12,6 +11,7 @@ import SearchForm from '@/components/SearchForm';
 import AddForm from '@/components/AddForm';
 import Panel from '@/components/Panel';
 import ResultsHeader from '@/components/ResultsHeader';
+import { Inventory } from '@/app/utils/Inventory';
 
 /**
  * This is the home page
@@ -30,11 +30,11 @@ import ResultsHeader from '@/components/ResultsHeader';
  * @returns Home page component
  */
 export default function Home() {
-  const [books, setBooks] = useState<Inventory[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   
   useEffect(() => {
-    getBooks(setBooks);
+    Inventory.readBooks(setBooks);
   }, []);
 
   const filteredBooks = filterBooks(books, searchParams);

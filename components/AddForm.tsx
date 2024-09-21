@@ -27,15 +27,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Dispatch, SetStateAction, useState } from "react"
 import { formSchema } from "@/app/utils/zod"
 import { z } from "zod"
-import axios from "axios"
 import { toast } from "sonner"
-import getBooks from "@/app/utils/getBooks"
 import { Genre } from "@prisma/client"
 import { FaPlus } from "react-icons/fa";
-import { Inventory } from "@/types"
+import { Book } from "@/types"
+import { Inventory } from "@/app/utils/Inventory"
 
 interface AddFormProps {
-  onSuccess: Dispatch<SetStateAction<Inventory[]>>
+  onSuccess: Dispatch<SetStateAction<Book[]>>
 }
 
 /**
@@ -63,13 +62,12 @@ const AddForm: React.FC<AddFormProps> = ({
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      console.log('submitted: ', data);
-      await axios.post('/api/books', data);
+      await Inventory.createBook(data);
       handleSubmitSuccess();
     } catch {
       toast("An error occured");
     } finally {
-      getBooks(onSuccess);
+      await Inventory.readBooks(onSuccess);
     }
   }
   const handleSubmitSuccess = () => {

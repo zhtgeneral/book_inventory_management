@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button"
 import downloadBooks from '@/app/utils/downloadBooks'
 import { CgExport } from "react-icons/cg"
 
-import { Inventory } from "@/types"
+import { Book } from "@/types"
 
 interface ResultsHeaderProps {
-  books: Inventory[]
+  books: Book[]
 }
 
 const ResultsHeader: React.FC<ResultsHeaderProps> = ({
