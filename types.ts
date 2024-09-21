@@ -9,15 +9,6 @@ export type Book = {
   ISBN: string
 }
 
-export type DisplayBook = {
-  id: number,
-  title: string,
-  author: string,
-  genre: Genre,
-  publication_date: string,
-  ISBN: string
-}
-
 export type SearchParams = {
   title?: string,
   author?: string,

@@ -14,18 +14,18 @@ import ResultsHeader from '@/components/ResultsHeader';
 import { Inventory } from '@/app/utils/Inventory';
 
 /**
- * This is the home page
- * It renders the components to add a book, filter books, and display all books.
- * The button to download all books as JSON or CSV should be visible TODO.
+ * This is the home page.
  * 
- * When a book is submitted successfully, the user should see green text in the form 
- * telling them submit was successful. If this action fails, a popup alerts the user 
- * this action failed.
- *
- * To submit the info for a book, the title is required to be <= 100 characters, the author <= 40 character
- * the genre a valid genre, the date to be non-null, and a valid ISBN code.
+ * It renders the panels to add a book, filter books, and display all books.
  * 
- * To filer book, the user can select to filer by title, author, genre, or date.
+ * All 3 panels should be displayed correctly and each of their function should work:
+ * 
+ * The panel to add books should trigger an update when it succeeds.
+ * The updates fetches the all books and causes the table to rerender the results in the table.
+ * 
+ * The panel to filter books should trigger an update to rerender the results in the table.
+ * 
+ * The panel to display books should update depending on the 2 other panels.
  * 
  * @returns Home page component
  */

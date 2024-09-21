@@ -65,7 +65,7 @@ const AddForm: React.FC<AddFormProps> = ({
       await Inventory.createBook(data);
       handleSubmitSuccess();
     } catch {
-      toast("An error occured");
+      toast("An error occured ⚠️");
     } finally {
       await Inventory.readBooks(onSuccess);
     }
@@ -100,7 +100,7 @@ const AddForm: React.FC<AddFormProps> = ({
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder='enter title' {...field} />
+                <Input placeholder='Enter title' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -113,7 +113,7 @@ const AddForm: React.FC<AddFormProps> = ({
             <FormItem>
               <FormLabel>Author</FormLabel>
               <FormControl>
-                <Input placeholder='enter author name' {...field} />
+                <Input placeholder='Enter author name' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -168,7 +168,7 @@ const AddForm: React.FC<AddFormProps> = ({
             <FormItem>
               <FormLabel>ISBN</FormLabel>
               <FormControl>
-                <Input placeholder='enter ISBN' {...field} />
+                <Input placeholder='Enter ISBN' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
