@@ -29,7 +29,7 @@ const Hoverable: React.FC<HoverableProps> = ({
     if (!isServer) {
       setIsHydrated(true);
     }
-  }, []);
+  }, [isServer]);
   return isHydrated? (
     <TooltipProvider>
       <Tooltip>

@@ -66,7 +66,7 @@ const AddForm: React.FC<AddFormProps> = ({
       console.log('submitted: ', data);
       await axios.post('/api/books', data);
       handleSubmitSuccess();
-    } catch (error: unknown) {
+    } catch {
       toast("An error occured");
     } finally {
       getBooks(onSuccess);
